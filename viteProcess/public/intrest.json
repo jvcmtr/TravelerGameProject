@@ -1,0 +1,107 @@
+[
+  {
+    "id": 0,
+    "name": "Ilha solitaria",
+    "description" : "aaaaaaaaaaaaaaaaaaaaaaaaaaaAAAAAAAAAAAAAAAAAAAAAAAAAaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaaaaaaaaaaaaaaaaaaaaaaaaaaaAA",
+    "position": {
+      "x": 600,
+      "y": 400
+    },
+    "symbol": "V",
+    "level": 1,
+    "concluded": false,
+    "event-generator": 0,
+    "special-events" : [
+      {
+        "event-id": 0,
+        "ocouring-level" : 20
+      }
+    ],
+    
+    "connection-ids": [0]
+  },
+  {
+    "id": 1,
+    "name": "Vila do Mindinho",
+    "description" : "",
+    "position": {
+      "x": 1000,
+      "y": 500
+    },
+    "symbol": "I",
+    "level": 1,
+    "concluded": false,
+    "event-generator": 0,
+    "special-events" : [
+      {
+        "event-id": 0,
+        "ocouring-level" : 20
+      }
+    ],
+    
+    "connection-ids": [0]
+  }, 
+  {
+    "id": 2,
+    "name": "Primeiro Comando",
+    "description" : "asjbv  ipabnsj vipap sasvip v ihsv v pva j spa vupba befbuwwur f78w3w3h f8fwv v8bqubs w8uwf iua8uw7fu3w bvygala apiw8u32873 ip8uibfafpiewf fepiubqef08uef 8yyrebhbyr rf8ubf rrur ap aipaarhrapiuviu8u   iusubiufsf bsipjn fp  ibn u epu8b  i PUnr R HB FV AODJBVFDHV LVA HVBV  HHU BAjvpiudb phaf i a  f  dafj fpif ah jl vrvbyrbah ah  ahiad ohdf ",
+    "position": {
+      "x": 200,
+      "y": 400
+    },
+    "symbol": "II",
+    "level": 1,
+    "concluded": true,
+    "event-generator": 0,
+    "special-events" : [
+      {
+        "event-id": 0,
+        "ocouring-level" : 20
+      }
+    ],
+    
+    "connection-ids": [1, 2]
+  },
+  {
+    "id": 3,
+    "name": "Segundo Comando",
+    "description" : "Segundo Comando Segundo ComandovSegundo Comando Segundo Comando Segundo Comando Segundo Comando Segundo ComandoSegundo ComandoSegundo Comando Segundo Comando Segundo Comando Segundo Comando Segundo Comando Segundo Comando Segundo Comando Segundo Comando Segundo Comando Segundo Comando Segundo Comando Segundo Comando Segundo Comando Segundo Comando Segundo Comando Segundo Comando Segundo ComandoSegundo Comando Segundo Comando Segundo Comando",
+    "position": {
+      "x": 350,
+      "y": 100
+    },
+    "symbol": "III",
+    "level": 1,
+    "concluded": false,
+    "event-generator": 0,
+    "special-events" : [
+      {
+        "event-id": 0,
+        "ocouring-level" : 20
+      }
+    ],
+    
+    "connection-ids": [1]
+  },
+  {
+    "id": 4,
+    "name": "Terceiro Comando",
+    "description": "",
+    "position": {
+      "x": 750,
+      "y": 650
+    },
+    "symbol": "IV",
+    "level": 1,
+    "concluded": false,
+    "event-generator": 0,
+    "special-events" : [
+      {
+        "event-id": 0,
+        "ocouring-level" : 20
+      }
+    ],
+    
+    "connection-ids": [3, 4]
+  }
+]

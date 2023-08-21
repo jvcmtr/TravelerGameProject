@@ -1,0 +1,33 @@
+{
+	"statistics": {
+		"hp": 0
+	},
+	"Skills": {
+		"passive": [],
+		"active": [],
+		"passiveEquiped": [],
+		"ofensiveEquiped": {
+			"slot1": "ID",
+			"slot2": "ID",
+			"slot3": "ID",
+			"slot4": "ID"
+		},
+		"defensiveEquiped": {
+			"slot1": "ID",
+			"slot2": "ID",
+			"slot3": "ID",
+			"slot4": "ID"
+		}
+	},
+	"inventory": {
+		"Equiped": [],
+		"keys": [],
+		"weapons": [],
+		"armours": [],
+		"consumables": []
+	},
+	"travelInfo": {
+		"currentlyOn": 0
+	},
+	"questMarkers": []
+}

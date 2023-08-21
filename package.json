@@ -1,0 +1,20 @@
+{
+  "name": "travelergameproj",
+  "productName": "Traveler project",
+  "version": "0.1.0",
+  "description": "Traveler Project is a turn-based RPG prototype made using React and Electron. Explore the world, discover misterious places, gather unique weapons and armours, combine direfent skills and defeat powerfull foes ",
+  "main": "main.js",
+  "scripts": {
+    "start": "concurrently \"npm run vite\" \"npm run electron\" ",
+    "electron": "electron .",
+    "vite": "npm run dev --prefix ./viteProcess/"
+  },
+  "author": "jvcmtr-Cicero",
+  "license": "MIT",
+  "dependencies": {
+    "electron": "^26.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "vite": "^4.4.9"
+  }
+}

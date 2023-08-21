@@ -1,0 +1,42 @@
+[
+  {
+    "id": 0,
+    "name": "jornada",
+    "discovered" : true,
+    "event_a" : 0,
+    "event_b" : 1,
+    "one_way" : false
+  },
+  {
+    "id": 1,
+    "name": "jornada",
+    "discovered" : true,
+    "event_a" : 2,
+    "event_b" : 3,
+    "one_way" : false
+  },
+  {
+    "id": 2,
+    "name": "jornada",
+    "discovered" : true,
+    "event_a" : 0,
+    "event_b" : 2,
+    "one_way" : false
+  },
+  {
+    "id": 3,
+    "name": "jornada",
+    "discovered" : true,
+    "event_a" : 4,
+    "event_b" : 1,
+    "one_way" : false
+  },
+  {
+    "id": 4,
+    "name": "jornada",
+    "discovered" : true,
+    "event_a" : 4,
+    "event_b" : 0,
+    "one_way" : false
+  }
+]

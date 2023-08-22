@@ -8,10 +8,13 @@ function createWindow () {
   const window = new BrowserWindow({
     width: 800,
     height: 600,
+    // fullscreen : true,                   IS DEV!
     webPreferences: {
-    }
+      // devTools: false                   IS DEV!
+    },
   })
 
+  window.setMenu(null)
   window.show();
 
   window.loadURL('http://localhost:8080');

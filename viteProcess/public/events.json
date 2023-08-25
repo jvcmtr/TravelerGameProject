@@ -1,0 +1,42 @@
+[
+    {
+        "id" : 0,
+        "type" : "choice",
+        "background_image" : "",
+        "text" : "HABABABABABA CHOSE OPTION ONE OR YOU WILL DIE",
+        "options" : [
+            {
+                "description" : "Chalenge the evil DM",
+                "possible" : {
+                    "method" : "PlayerHas",
+                    "args" : ["DM_killing_sword"] 
+                },
+                "action" : {
+                    "method" : "giveXP",
+                    "args": [200]
+                }
+            },
+            {
+                "description" : "This is !option one",
+                "action" : {
+                    "method" : "killPlayer",
+                    "args": []
+                }
+            }
+        ]
+    },
+    {
+        "id" : 0,
+        "type" : "combat",
+        "background_image" : "",
+        "enviroment_conditions" : [],
+
+        "enemy_pos2" : "mean Big ogre ID",
+        "enemy_pos4" : "i dont want enemies on poition 3",
+        "enemy_pos5" : "max number is 6",
+
+        "base_XP" : 0,
+        "garantied loot": ["id", "id"]
+    }
+
+]

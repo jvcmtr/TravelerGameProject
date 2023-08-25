@@ -1,5 +1,5 @@
 import React from 'react'
-import colours from '../colours'
+import colours from '../constants/colours'
 
 //  CONTROLE /////////////////////////////////////////////
 const LarguraDaLinha = 4;

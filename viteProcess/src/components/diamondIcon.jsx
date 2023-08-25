@@ -1,4 +1,4 @@
-import colours from '../colours'
+import colours from '../constants/colours'
 
 export default function DiamondIcon(props){
   return(

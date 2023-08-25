@@ -38,7 +38,7 @@ export default function SideDescription(props){
   return(
     <Area
       onClick={()=>{setActive(true)}}
-      onMouseEnter={()=>{setHover(true)}}
+      onMouseEnter={()=>{setHover(true) }}
       onMouseLeave={()=>{setHover(false)}}
       style={{    
         position: 'fixed',
@@ -96,7 +96,7 @@ export default function SideDescription(props){
               e.stopPropagation()} 
           }>
             {
-              (node.id == props.travelAllowedFor[0]) ? "Adentrar" : "Viajar para : "
+              (node.id == props.travelAllowedFor[0]) ? "Investigar " : "Viajar para : "
             }
             {props.node.name}
           </TextButton>

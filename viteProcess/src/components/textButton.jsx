@@ -1,5 +1,5 @@
 import React from 'react'
-import colours from '../colours'
+import colours from '../constants/colours'
 import Text from './text/simpleText'
 
 export default function TextButton(props){
@@ -26,7 +26,6 @@ export default function TextButton(props){
         borderRadius:'5px',
         outlineColor: colours.secondary,
         outlineWidth: "1px",
-        outlineStyle: "dashed",
         
         userSelect: 'none',
 

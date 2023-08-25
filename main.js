@@ -11,7 +11,7 @@ async function createWindow () {
 
   const window = new BrowserWindow({
     width: 1200,
-    height: 600,
+    height: 700,
     fullscreen : isDev? false : true,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),

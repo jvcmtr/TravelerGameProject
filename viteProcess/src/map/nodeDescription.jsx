@@ -55,7 +55,10 @@ export default function SideDescription(props){
         style={AreaStyle}>
 
         <div style={{alignSelf: 'end'}}>
-          <TextButton onClick={(e)=>{setActive(false); e.stopPropagation()} }>
+          <TextButton onClick={(e)=>{ 
+            console.log(e); 
+            setActive(false); 
+            e.stopPropagation()} }>
             X
           </TextButton>
         </div>

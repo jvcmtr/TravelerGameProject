@@ -6,11 +6,11 @@ export default function TextButton(props){
 
   const [hover, setHover] = React.useState(false)
 
-  const handleClick = ()=>{
+  const handleClick = (e)=>{
     if(props.disable){
       return
     }
-    props.onClick.call(this)
+    props.onClick.call(this, e)
   }
   
   return(

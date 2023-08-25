@@ -20,7 +20,7 @@ export default function Map(props){
   React.useEffect(()=>{
     async function loadData(){
       const responseE = await fetch('public/connections.json')
-      const responseN = await fetch('public/intrest.json')
+      const responseN = await fetch('public/mapNodes.json')
 
       const dataE = await responseE.json()
       const dataN = await responseN.json()

@@ -7,8 +7,6 @@ import SideDescription from './nodeDescription'
 import Player from './playerIcon'
 
 export default function Map(props){
-  const nodes = React.useRef()
-  const edges = React.useRef()
   const NeibouringNodes = React.useRef([])
   const [loaded, FORCE_RENDER] = React.useState(0)
   
@@ -18,17 +16,8 @@ export default function Map(props){
   const [activeSidebar, setActiveSidebar] = React.useState(true)
 
   React.useEffect(()=>{
-    async function loadData(){
-      const responseE = await fetch('public/connections.json')
-      const responseN = await fetch('public/mapNodes.json')
-
-      const dataE = await responseE.json()
-      const dataN = await responseN.json()
-
-      edges.current = dataE
-      nodes.current = dataN
-      
-      let node = dataN.find((n)=>{
+    async function loadData(){   
+      let node = props.nodes.find((n)=>{
         return n.id == playerNode
       })
       setSelectedNode(node)
@@ -47,12 +36,14 @@ export default function Map(props){
   }
   
   const FocusOnPlayer = () =>{
-    PlayerRef.current.scrollIntoView({
-      behavior: "smooth", 
-      block: "center", 
-      inline: "center" 
-    })
-    setSelectedNode(playerNode)
+    if(loaded > 0){
+      PlayerRef.current.scrollIntoView({
+        behavior: "smooth", 
+        block: "center", 
+        inline: "center" 
+      })
+      setSelectedNode(playerNode)
+    }
   }
 
   const movePlayer = (node) =>{
@@ -70,14 +61,13 @@ export default function Map(props){
       let neibours = []
       neibours.push(playerNode.id)
       
-      edges.current.forEach((x)=>{
-        let a = x.event_a;
-        let b = x.event_b
+      props.edges.forEach((x)=>{
+        let a = x.node_a;
+        let b = x.node_b
         
         if(a == playerNode.id){
           neibours.push(b)
         }
-
         if(b == playerNode.id && !x.one_way){
           neibours.push(a)
         }
@@ -94,9 +84,9 @@ export default function Map(props){
       <Background/>
       { loaded &&(
         <>
-        <NodesDrawer data={nodes.current} changeFocus={changeFocus} />
+        <NodesDrawer data={props.nodes} changeFocus={changeFocus} />
         <PathDrawer 
-          data={{nodes: nodes.current, paths: edges.current}}
+          data={{nodes:props.nodes , paths: props.edges}}
         />     
         <SideDescription 
           key={loaded}

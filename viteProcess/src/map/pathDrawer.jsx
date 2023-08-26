@@ -70,11 +70,11 @@ function findPathPositions(path, nodes){
   let posA = {x:0,y:0}
   let posB = {x:0,y:0}
   nodes.forEach(node=>{
-    if (node.id == path.event_a){
+    if (node.id == path.node_a){
       posA = node.position
     }
 
-    if (node.id == path.event_b){
+    if (node.id == path.node_b){
       posB = node.position
     }
   })

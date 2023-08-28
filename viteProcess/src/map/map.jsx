@@ -11,7 +11,7 @@ import Player from './playerIcon'
 export default function Map({player, setPlayer}){
 
   const [loaded, FORCE_RENDER] = React.useState(0)
-  const playerNode = React.useRef()
+  const [playerNode, setPlayerNodeOBJ] = React.useState()
   const PlayerRef = React.useRef()
 
   const nodes = React.useRef([]);
@@ -72,6 +72,7 @@ export default function Map({player, setPlayer}){
   }
 
   const setPlayerNode = (node) =>{
+    setPlayerNodeOBJ(node)
     setPlayer.call(this, {
       ...player,
       travelInfo : {
@@ -79,27 +80,27 @@ export default function Map({player, setPlayer}){
         currentlyOn : node.id
       }
     })
-    playerNode.current = node
   }
 
   const FindNeibours = () => {
     if(loaded > 0){
       let neibours = []
-      neibours.push(player.travelInfo.currentlyOn)
+      neibours.push(playerNode)
       
       edges.current.forEach((x)=>{
         let a = x.node_a;
         let b = x.node_b
         
-        if(a == player.travelInfo.currentlyOn){
+        if(a == playerNode.id){
           neibours.push(b)
         }
-        if(b == player.travelInfo.currentlyOn && !x.one_way){
+        if(b == playerNode.id && !x.one_way){
           neibours.push(a)
         }
       })
 
       NeibouringNodes.current = neibours
+      console.log(neibours)
       return(neibours) 
     }
     return []
@@ -121,7 +122,7 @@ export default function Map({player, setPlayer}){
           travelAllowedFor={FindNeibours()}
           node={selectedNode}  
         />
-          <Player node={playerNode.current}> 
+          <Player node={playerNode}> 
             <div ref={PlayerRef}/> 
           </Player>
         </>

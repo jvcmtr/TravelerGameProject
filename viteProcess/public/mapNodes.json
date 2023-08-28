@@ -7,7 +7,6 @@
     "y": 400
   },
   "symbol": "V",
-  "level": 1,
   "concluded": false,
   "event_generator": 0,
   "special_events": [{
@@ -26,8 +25,7 @@
     "y": 500
   },
   "symbol": "I",
-  "level": 1,
-  "concluded": false,
+  "concluded_level": false,
   "event_generator": 0,
   "special_events": [{
     "event_id": 0,
@@ -45,8 +43,7 @@
     "y": 400
   },
   "symbol": "II",
-  "level": 1,
-  "concluded": true,
+  "concluded_level": false,
   "event_generator": 0,
   "special_events": [{
     "event_id": 0,
@@ -64,8 +61,7 @@
     "y": 100
   },
   "symbol": "III",
-  "level": 1,
-  "concluded": false,
+  "concluded_level": false,
   "event_generator": 0,
   "special_events": [{
     "event_id": 0,
@@ -83,8 +79,7 @@
     "y": 650
   },
   "symbol": "IV",
-  "level": 1,
-  "concluded": false,
+  "concluded_level": false,
   "event_generator": 0,
   "special_events": [{
     "event_id": 0,

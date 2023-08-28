@@ -27,7 +27,36 @@
 		"consumables": []
 	},
 	"travelInfo": {
-		"currentlyOn": 0
+		"currentlyOn": 0,
+		"discoveredNodes": [
+			{
+				"id": 0,
+				"level": 1
+			},
+			{
+				"id": 1,
+				"level": 1
+			},
+			{
+				"id": 2,
+				"level": 1
+			},
+			{
+				"id": 3,
+				"level": 1
+			},
+			{
+				"id": 4,
+				"level": 1
+			}
+		],
+		"discoveredEdges": [
+			{"id": 0},
+			{"id": 1},
+			{"id": 2},
+			{"id": 3},
+			{"id": 4}
+		]
 	},
 	"questMarkers": []
 }

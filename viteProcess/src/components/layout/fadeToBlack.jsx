@@ -16,9 +16,11 @@ export default function FadeToBlack(props){
         backgroundColor: "#000",
         opacity: Dark? 0 : 1,
         transitionDuration: '1s',
+
+        pointerEvents: 'none'
     }}  
     >
-        {props.children}
+      {props.children}
     </div>
   )
 }

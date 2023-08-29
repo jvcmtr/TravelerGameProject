@@ -2,13 +2,13 @@ import './App.css'
 import Map from './map/map'
 import React from 'react'
 import Screens from './constants/pages.js'
+import FadeToBlack from './components/layout/fadeToBlack'
+import MyNavigator from './myNavigation'
 
 export default function App() {
   const [loaded, setLoaded] = React.useState(false)
   const player = React.useRef();
   const setPlayer = (newPlayer) => {player.current = newPlayer}
-
-  const currentScreen = Screens.MAP
   
   React.useEffect(()=>{
     async function loadData(){
@@ -21,24 +21,29 @@ export default function App() {
     }
     loadData()
   },[])  
-  
-  if(currentScreen == Screens.MAP && loaded){
-    return <Map player={player.current} setPlayer={setPlayer}></Map>
-  }
 
-  if(currentScreen == Screens.EVENT && loaded){
-    return <h1> PAGE NOT IMPLEMENTED </ h1>
-  }
-
-  if(currentScreen == Screens.INVENTORY && loaded){
-    return <h1> PAGE NOT IMPLEMENTED </ h1>
+  if(!loaded){
+    return(<h1>LOADING ...</h1>)
   }
 
   return (
     <main>
-      {
-        loaded? <h1> LOADED </h1>: <h1>LOADING</h1>
-      }
+      <MyNavigator default={Screens.MAP}>
+        <Map
+            pageId={Screens.MAP} 
+            player={player.current} 
+            setPlayer={setPlayer} 
+        />
+
+        <h1 pageId={Screens.EVENT}> 
+          EVENT PAGE NOT IMPLEMENTED 
+        </ h1>
+
+        <h1 pageId={Screens.INVENTORY}> 
+          INVENTORY NOT IMPLEMENTED 
+        </ h1>
+
+      </MyNavigator>
     </main> 
   )
 }

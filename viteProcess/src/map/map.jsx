@@ -1,5 +1,6 @@
 import React from 'react'
 import {innerJointById} from '../utils.js'
+import SCREENS from '../constants/pages.js'
 
 import Background from './background'
 import Button from '../components/button'
@@ -8,7 +9,7 @@ import PathDrawer from './pathDrawer'
 import SideDescription from './nodeDescription'
 import Player from './playerIcon'
 
-export default function Map({player, setPlayer}){
+export default function Map({player, setPlayer, finishLoading, changePage}){
 
   const [loaded, FORCE_RENDER] = React.useState(0)
   const [playerNode, setPlayerNodeOBJ] = React.useState()
@@ -23,7 +24,6 @@ export default function Map({player, setPlayer}){
 
   React.useEffect(()=>{
     async function loadData(){   
-
       const responseE = await fetch('public/connections.json')
       const responseN = await fetch('public/mapNodes.json')
       const dataE = await responseE.json()
@@ -40,7 +40,10 @@ export default function Map({player, setPlayer}){
       
       FORCE_RENDER(loaded+1)
       FocusOnPlayer()
+      console.log(finishLoading)
+      finishLoading.call(this)
     }
+
     loadData()
   },[])
   
@@ -69,6 +72,10 @@ export default function Map({player, setPlayer}){
       FocusOnPlayer()
       setSelectedNode(node)
     }, 300)
+
+    if(!node.concluded){
+      changePage(SCREENS.EVENT)
+    }
   }
 
   const setPlayerNode = (node) =>{
@@ -100,7 +107,6 @@ export default function Map({player, setPlayer}){
       })
 
       NeibouringNodes.current = neibours
-      console.log(neibours)
       return(neibours) 
     }
     return []

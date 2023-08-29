@@ -1,3 +1,4 @@
+// If needed, its slightly more eficient to make the biger array as array 2
 export function innerJointById( array1, array2){
     let ret = [];
     array1.forEach((node) => {

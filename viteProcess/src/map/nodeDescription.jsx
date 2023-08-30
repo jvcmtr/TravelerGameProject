@@ -3,6 +3,7 @@ import DiamondIcon from '../components/diamondIcon'
 import Title from '../components/text/titleText'
 import Text from '../components/text/simpleText'
 import TextButton from '../components/textButton'
+
 import React from 'react'
 
 export default function SideDescription(props){

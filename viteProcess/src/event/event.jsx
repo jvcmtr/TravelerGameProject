@@ -1,6 +1,6 @@
 import React from "react"
-import {innerJointById} from '../utils.js'
-import eventGenerator from '../constants/eventGenerator'
+import {innerJointById} from '../utils/utils.js'
+import eventGenerator from '../classes/eventGenerator'
 
 
 export default function Event(props){
@@ -52,5 +52,5 @@ export default function Event(props){
     }, [])
 
 
-    return <h5> Rola q tal </h5>
+    return <h5> NOT IMPLEMENTED </h5>
 }

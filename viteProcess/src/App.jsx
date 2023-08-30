@@ -1,6 +1,6 @@
 import './App.css'
 import React from 'react'
-import Screens from './constants/pages.js'
+import Screens from './utils/pages.js'
 
 import Map from './map/map'
 import Event from './event/event'

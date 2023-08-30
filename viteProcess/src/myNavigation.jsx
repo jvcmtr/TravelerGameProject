@@ -1,5 +1,5 @@
 import React from 'react'
-import SCREENS from './constants/pages.js'
+import SCREENS from './utils/pages.js'
 import FadeToBlack from './components/layout/fadeToBlack.jsx'
 
 export default function MyNavigator(props) {

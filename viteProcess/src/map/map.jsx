@@ -1,6 +1,6 @@
 import React from 'react'
-import {innerJointById} from '../utils.js'
-import SCREENS from '../constants/pages.js'
+import {innerJointById} from '../utils/utils.js'
+import SCREENS from '../utils/pages.js'
 
 import Background from './background'
 import Button from '../components/button'

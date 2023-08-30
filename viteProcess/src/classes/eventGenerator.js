@@ -1,5 +1,5 @@
 
-class EventGenerator {
+export default class EventGenerator {
     constructor(obj){
         this.id  = obj.id;
         this.events = obj.events;

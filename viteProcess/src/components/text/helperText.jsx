@@ -1,4 +1,4 @@
-import theme from '../../colours.js';
+import theme from '../../utils/colours.js';
 import styled from "styled-components";
 
   const Txt = styled.div`

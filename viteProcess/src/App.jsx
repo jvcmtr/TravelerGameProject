@@ -1,8 +1,9 @@
 import './App.css'
-import Map from './map/map'
 import React from 'react'
 import Screens from './constants/pages.js'
-import FadeToBlack from './components/layout/fadeToBlack'
+
+import Map from './map/map'
+import Event from './event/event'
 import MyNavigator from './myNavigation'
 
 export default function App() {
@@ -28,16 +29,18 @@ export default function App() {
 
   return (
     <main>
-      <MyNavigator default={Screens.MAP}>
+      <MyNavigator default={Screens.EVENT}>
         <Map
             pageId={Screens.MAP} 
             player={player.current} 
             setPlayer={setPlayer} 
         />
 
-        <h1 pageId={Screens.EVENT}> 
-          EVENT PAGE NOT IMPLEMENTED 
-        </ h1>
+        <Event
+            pageId={Screens.EVENT} 
+            player={player.current} 
+            setPlayer={setPlayer} 
+        />
 
         <h1 pageId={Screens.INVENTORY}> 
           INVENTORY NOT IMPLEMENTED 

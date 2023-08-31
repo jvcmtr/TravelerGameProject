@@ -4,7 +4,7 @@ import eventGenerator from '../classes/eventGenerator'
 import colours from '../utils/colours'
 
 import Background from "../components/layout/backgroundArea.jsx";
-import TitleText from '../components/text/titleText';
+import BoldText from '../components/text/boldText';
 import SimpleText from '../components/text/simpleText.jsx'
 import DiamondIcon from "../components/diamondIcon.jsx";
 import TextButton from "../components/textButton.jsx";
@@ -15,9 +15,10 @@ export default function Event(props){
     const playerNode = React.useRef();
     const eventGen = React.useRef();
 
+    const [loaded, FORCE_RENDER] = React.useState(0)
     const [Event, setEvent] = React.useState(0); 
 
-    React.useEffect(()=>{
+    React.useLayoutEffect(()=>{
         async function loadData(){   
             const responseN = await fetch('public/mapNodes.json')
             const responseG = await fetch('public/eventsGenerator.json')
@@ -52,9 +53,10 @@ export default function Event(props){
             // initialize Event
             const dataEv = await responseEv.json()
             let Ev = dataEv.find((e) => {return e.id == eventId} )
-
-            setEvent(Ev)
+         
+            setEvent({...Ev})
             props.finishLoading.call(this)
+            FORCE_RENDER(loaded+1)
         }
       
         loadData()
@@ -63,33 +65,50 @@ export default function Event(props){
 
     return (
         <Background >
-        {Event&& (
+        { (loaded>0) && (
             <div style={{
-                height: "100vh",
+                height: "90vh",
                 padding: "5%",
                 display: "flex",
                 alignItems: "center",
                 flexDirection: "column",
                 justifyContent: "start" 
             }}>
-                <DiamondIcon>{playerNode.current.symbol} </DiamondIcon>
-                <TitleText themeColor={colours.txtSecondary}>  {playerNode.current.name} </TitleText>
-                <div style={{height: "50px"}}> </div>
-                <SimpleText themeColor={colours.txtSecondary}> {Event.text} </SimpleText>
                 <div style={{
-                    flexGrow: 3 ,
-                    gap: "20px",
+                    width: "100%",
+                    height: "12%",  
                     display: "flex",
+                    alignItems: "start",
+                    justifyContent: "start",
+                    gap: "5px"
+                }}>
+                    <SimpleText themeColor={colours.txtSecondary}>  {playerNode.current.name} </SimpleText>
+                    <SimpleText themeColor={colours.txtSecondary}> {"   ♦   "}  </SimpleText>
+                    <BoldText themeColor={colours.txtSecondary}>  {playerNode.current.level} </BoldText>
+                    {console.log(playerNode.current)}
+                </div>
+
+                <div style={{
+                    height: "48%"
+                }}>
+                    <SimpleText themeColor={colours.txtSecondary}> {Event.text} </SimpleText>
+                </div>
+ 
+                <div style={{
+                    height: "35%" ,
+                    marginBottom: "5%",
+                    gap: "10%",
+                    display: "flex",
+                    flexWrap: "wrap",
                     flexDirection: "column",
                     justifyContent: "center",
                     alignItems: "center"
                 }}>
                     {
                         Event.options.map((option)=>{
-                            return <TextButton> {option.description} </TextButton>
+                            return <TextButton style={{padding: "10px", width:"100%"}}> {option.description} </TextButton>
                         })
                     }
-                    {console.log(Event.options)}
                 </div>
         </ div>)}
         { !Event && <h3 style={{color: "#fff"}}> ERROR ON LOADING </h3> }

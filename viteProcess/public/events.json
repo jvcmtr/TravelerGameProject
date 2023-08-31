@@ -26,7 +26,111 @@
         ]
     },
     {
-        "id" : 0,
+        "id" : 1,
+        "type" : "choice",
+        "background_image" : "",
+        "text" : " simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets",
+        "options" : [
+            {
+                "description" : "Chalenge the evil DM",
+                "possible" : {
+                    "method" : "PlayerHas",
+                    "args" : ["DM_killing_sword"] 
+                },
+                "action" : {
+                    "method" : "giveXP",
+                    "args": [200]
+                }
+            },
+            {
+                "description" : "This is !option one",
+                "action" : {
+                    "method" : "killPlayer",
+                    "args": []
+                }
+            },
+            {
+                "description" : "This is also not option one",
+                "action" : {
+                    "method" : "killPlayer",
+                    "args": []
+                }
+            },
+            {
+                "description" : "Try to flee",
+                "action" : {
+                    "method" : "killPlayer",
+                    "args": []
+                }
+            },
+            {
+                "description" : "Chalenge the evil DM",
+                "possible" : {
+                    "method" : "PlayerHas",
+                    "args" : ["DM_killing_sword"] 
+                },
+                "action" : {
+                    "method" : "giveXP",
+                    "args": [200]
+                }
+            },
+            {
+                "description" : "This is !option one",
+                "action" : {
+                    "method" : "killPlayer",
+                    "args": []
+                }
+            },
+            {
+                "description" : "This is also not option one",
+                "action" : {
+                    "method" : "killPlayer",
+                    "args": []
+                }
+            },
+            {
+                "description" : "Try to flee",
+                "action" : {
+                    "method" : "killPlayer",
+                    "args": []
+                }
+            },
+            {
+                "description" : "Chalenge the evil DM",
+                "possible" : {
+                    "method" : "PlayerHas",
+                    "args" : ["DM_killing_sword"] 
+                },
+                "action" : {
+                    "method" : "giveXP",
+                    "args": [200]
+                }
+            },
+            {
+                "description" : "This is !option one",
+                "action" : {
+                    "method" : "killPlayer",
+                    "args": []
+                }
+            },
+            {
+                "description" : "This is also not option one",
+                "action" : {
+                    "method" : "killPlayer",
+                    "args": []
+                }
+            },
+            {
+                "description" : "Try to flee",
+                "action" : {
+                    "method" : "killPlayer",
+                    "args": []
+                }
+            }
+        ]
+    },
+    {
+        "id" : 2,
         "type" : "combat",
         "background_image" : "",
         "enviroment_conditions" : [],

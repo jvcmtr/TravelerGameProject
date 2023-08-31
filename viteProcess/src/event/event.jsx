@@ -21,8 +21,6 @@ export default function Event(props){
     React.useLayoutEffect(()=>{
         async function loadData(){   
             const responseN = await fetch('public/mapNodes.json')
-            const responseG = await fetch('public/eventsGenerator.json')
-            const responseEv = await fetch('public/events.json')
 
             // Initialize node on witch event ocours
             const dataN = await responseN.json()
@@ -30,31 +28,9 @@ export default function Event(props){
             node = innerJointById([node] , props.player.travelInfo.discoveredNodes)[0]
             playerNode.current = node;
             
-            // Init event Generator
-            const dataG = await responseG.json()
-            let eventG = {}
-            dataG.forEach((el)=>{
-                if(el.id == node.event_generator){
-                    eventG = new eventGenerator(el)
-                }
-            })
-
-            // Find the ID of the current Event
-            let eventId = -1
-            node.special_events.forEach(element => {
-                if(element.ocouring_level == node.level){
-                    eventId = element.event_id
-                }
-            });
-            if(eventId == -1){
-                eventId = eventG.getRandom().event_id
-            }
-
-            // initialize Event
-            const dataEv = await responseEv.json()
-            let Ev = dataEv.find((e) => {return e.id == eventId} )
-         
+            let Ev = await InitEventPipeline(node)
             setEvent({...Ev})
+            
             props.finishLoading.call(this)
             FORCE_RENDER(loaded+1)
         }
@@ -85,7 +61,6 @@ export default function Event(props){
                     <SimpleText themeColor={colours.txtSecondary}>  {playerNode.current.name} </SimpleText>
                     <SimpleText themeColor={colours.txtSecondary}> {"   ♦   "}  </SimpleText>
                     <BoldText themeColor={colours.txtSecondary}>  {playerNode.current.level} </BoldText>
-                    {console.log(playerNode.current)}
                 </div>
 
                 <div style={{
@@ -114,4 +89,38 @@ export default function Event(props){
         { !Event && <h3 style={{color: "#fff"}}> ERROR ON LOADING </h3> }
         </Background>
     )
+}
+
+
+async function InitEventPipeline(currentNode){
+    let responseG = fetch('public/eventsGenerator.json')
+    let responseEv = fetch('public/events.json') 
+
+    // Init event Generator
+    responseG = await responseG
+    const dataG = await responseG.json()
+    let eventG = {}
+    dataG.forEach((el)=>{
+        if(el.id == currentNode.event_generator){
+            eventG = new eventGenerator(el)
+        }
+    })
+
+    // Find the ID of the current Event
+    let eventId = -1
+    currentNode.special_events.forEach(element => {
+        if(element.ocouring_level == currentNode.level){
+            eventId = element.event_id
+        }
+    });
+    if(eventId == -1){
+        eventId = eventG.getRandom().event_id
+    }
+
+    // initialize Event
+    responseEv = await responseEv
+    const dataEv = await responseEv.json()
+    let Ev = dataEv.find((e) => {return e.id == eventId} )
+
+    return Ev
 }

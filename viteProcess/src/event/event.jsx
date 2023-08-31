@@ -1,5 +1,6 @@
 import React from "react"
 import {innerJointById} from '../utils/utils.js'
+import {isPossible, executeOption} from '../utils/eventUtils.js'
 import eventGenerator from '../classes/eventGenerator'
 import colours from '../utils/colours'
 
@@ -81,7 +82,12 @@ export default function Event(props){
                 }}>
                     {
                         Event.options.map((option)=>{
-                            return <TextButton style={{padding: "10px", width:"100%"}}> {option.description} </TextButton>
+                            if(isPossible(props.player, option)){
+                                console.log(option)
+                                console.log("is true")
+                                console.log()
+                                return <TextButton style={{padding: "10px", width:"100%"}}> {option.description} </TextButton>
+                            }
                         })
                     }
                 </div>

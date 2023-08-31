@@ -34,7 +34,7 @@
             {
                 "description" : "Chalenge the evil DM",
                 "possible" : {
-                    "method" : "PlayerHas",
+                    "method" : "PlayerHasKey",
                     "args" : ["DM_killing_sword"] 
                 },
                 "action" : {
@@ -51,77 +51,6 @@
             },
             {
                 "description" : "This is also not option one",
-                "action" : {
-                    "method" : "killPlayer",
-                    "args": []
-                }
-            },
-            {
-                "description" : "Try to flee",
-                "action" : {
-                    "method" : "killPlayer",
-                    "args": []
-                }
-            },
-            {
-                "description" : "Chalenge the evil DM",
-                "possible" : {
-                    "method" : "PlayerHas",
-                    "args" : ["DM_killing_sword"] 
-                },
-                "action" : {
-                    "method" : "giveXP",
-                    "args": [200]
-                }
-            },
-            {
-                "description" : "This is !option one",
-                "action" : {
-                    "method" : "killPlayer",
-                    "args": []
-                }
-            },
-            {
-                "description" : "This is also not option one",
-                "action" : {
-                    "method" : "killPlayer",
-                    "args": []
-                }
-            },
-            {
-                "description" : "Try to flee",
-                "action" : {
-                    "method" : "killPlayer",
-                    "args": []
-                }
-            },
-            {
-                "description" : "Chalenge the evil DM",
-                "possible" : {
-                    "method" : "PlayerHas",
-                    "args" : ["DM_killing_sword"] 
-                },
-                "action" : {
-                    "method" : "giveXP",
-                    "args": [200]
-                }
-            },
-            {
-                "description" : "This is !option one",
-                "action" : {
-                    "method" : "killPlayer",
-                    "args": []
-                }
-            },
-            {
-                "description" : "This is also not option one",
-                "action" : {
-                    "method" : "killPlayer",
-                    "args": []
-                }
-            },
-            {
-                "description" : "Try to flee",
                 "action" : {
                     "method" : "killPlayer",
                     "args": []

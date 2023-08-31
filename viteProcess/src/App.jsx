@@ -6,6 +6,8 @@ import Map from './map/map'
 import Event from './event/event'
 import MyNavigator from './myNavigation'
 
+import BGArea from './components/layout/backgroundArea'
+
 export default function App() {
   const [loaded, setLoaded] = React.useState(false)
   const player = React.useRef();
@@ -24,7 +26,10 @@ export default function App() {
   },[])  
 
   if(!loaded){
-    return(<h1>LOADING ...</h1>)
+    return(
+    <BGArea> 
+    </BGArea>
+    )
   }
 
   return (

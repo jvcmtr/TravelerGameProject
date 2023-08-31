@@ -2,7 +2,7 @@ import React from 'react'
 import {innerJointById} from '../utils/utils.js'
 import SCREENS from '../utils/pages.js'
 
-import Background from './background'
+import Background from './mapImage.jsx'
 import Button from '../components/button'
 import NodesDrawer from './nodesDrawer'
 import PathDrawer from './pathDrawer'

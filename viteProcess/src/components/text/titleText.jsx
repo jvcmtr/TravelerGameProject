@@ -28,7 +28,6 @@ export default function bigText(props){
   if (props.themeColor !== undefined){
     color = props.themeColor
   }
-
   return ( 
     <Txt style={{color: color }}> 
       {props.children}

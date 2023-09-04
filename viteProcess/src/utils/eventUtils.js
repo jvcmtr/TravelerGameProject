@@ -1,26 +1,36 @@
-    // Executes the outcome of a combat OR a chosen option
-export function executeOption(playerState, setPlayerState, option){
-    let player = playerState;
-    player = eval(`${option.action.method}( ${JSON.stringify(playerState)} , ${JSON.stringify(option.action.args)})`);
-    setPlayerState({...player})
-}
+// Executes the outcome of a combat OR a chosen option
+    export function executeOption(playerState, setPlayerState, option){
+        let player = playerState;
 
-    // checks whether an option is fit to be chosen by the player
-export function isPossible(playerState, option){
-
-    if(option.possible == undefined) {return true}
-
-    let r = eval(`${option.possible.method}( ${JSON.stringify(playerState)} , ${JSON.stringify(option.possible.args)} )`);
-
-    console.log(r)
-    if(r == undefined){
-        console.warn(` unable to resolve ${option.possible.method}( player , ${option.possible.args} ). \n method doesnt Exist `)
+        for(i=0; i<option.action.methods.length ; i++){
+            let nplayer = eval(`${option.action.methods[i].name}( ${JSON.stringify(playerState)} , ${JSON.stringify(option.action.methods[i].args)})`);
+            if(nplayer){
+                player = nplayer;
+            }
+        }
+        
+        setPlayerState({...player})
     }
-    return r;
-}
+//
 
 
 
+
+
+// checks whether an option is fit to be chosen by the player
+    export function isPossible(playerState, option){
+
+        if(option.possible == undefined) {return true}
+
+        let r = eval(`${option.possible.method}( ${JSON.stringify(playerState)} , ${JSON.stringify(option.possible.args)} )`);
+
+        console.log(r)
+        if(r == undefined){
+            console.warn(` unable to resolve ${option.possible.method}( player , ${option.possible.args} ). \n method doesnt Exist `)
+        }
+        return r;
+    }
+//
 
 
 // _________________________________________________ POSSIBLE

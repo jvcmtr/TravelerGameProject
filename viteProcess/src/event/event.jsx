@@ -83,9 +83,6 @@ export default function Event(props){
                     {
                         Event.options.map((option)=>{
                             if(isPossible(props.player, option)){
-                                console.log(option)
-                                console.log("is true")
-                                console.log()
                                 return <TextButton style={{padding: "10px", width:"100%"}}> {option.description} </TextButton>
                             }
                         })

@@ -40,6 +40,23 @@ export default function Event(props){
     }, [])
 
 
+    const handleClick = (option) =>{
+        let p = executeOption(props.player, props.setPlayer, option)
+        if(!p){
+            console.warn("ERROR HANDLING OPTION. eventUtils executeOption() returned " + p)
+            console.warn(p)
+        }
+        props.setPlayer({...p})
+
+        // handle resolve prop from option
+        /*
+            CONTINUE -> go to next node (default wining state)
+            CONTINUE TO -> go to specific node
+            RETURN TO MAP ->  return to map without increasing the node level (default defeat state)
+            END LEVEL -> return to map increasing the node level
+        */
+    }
+
     return (
         <Background >
         { (loaded>0) && (
@@ -83,7 +100,12 @@ export default function Event(props){
                     {
                         Event.options.map((option)=>{
                             if(isPossible(props.player, option)){
-                                return <TextButton style={{padding: "10px", width:"100%"}}> {option.description} </TextButton>
+                                return (
+                                <TextButton 
+                                    style={{padding: "10px", width:"100%"}} 
+                                    onClick={()=>handleClick(option)}> 
+                                        {option.description} 
+                                </TextButton>)
                             }
                         })
                     }

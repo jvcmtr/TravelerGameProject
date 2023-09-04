@@ -1,5 +1,5 @@
 // Executes the outcome of a combat OR a chosen option
-    export function executeOption(playerState, setPlayerState, option){
+    export function executeOption(playerState, option){
         let player = playerState;
 
         for(i=0; i<option.action.methods.length ; i++){
@@ -8,8 +8,8 @@
                 player = nplayer;
             }
         }
-        
-        setPlayerState({...player})
+
+        return player;
     }
 //
 

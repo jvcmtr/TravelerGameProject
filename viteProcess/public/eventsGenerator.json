@@ -3,12 +3,12 @@
         "id" : 0,
         "events": [
             {
-                "event_id" : 0,
-                "chance" : 1
+                "event_id" : 3,
+                "chance" : 10
             } ,
             {
                 "event_id" : 1,
-                "chance" : 2
+                "chance" : 1
             } 
         ]
     }

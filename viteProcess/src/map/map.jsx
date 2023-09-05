@@ -29,7 +29,7 @@ export default function Map({player, setPlayer, finishLoading, changePage}){
       const dataE = await responseE.json()
       const dataN = await responseN.json()
 
-      edges.current = innerJointById(player.travelInfo.discoveredEdges, dataE)
+      edges.current = innerJointById(player.travelInfo.discoveredConnections, dataE)
       nodes.current = innerJointById(player.travelInfo.discoveredNodes, dataN)
 
       let node = dataN.find((n)=>{
@@ -39,8 +39,6 @@ export default function Map({player, setPlayer, finishLoading, changePage}){
       setPlayerNode(node)
       
       FORCE_RENDER(loaded+1)
-      FocusOnPlayer()
-      console.log(finishLoading)
       finishLoading.call(this)
     }
 
@@ -54,17 +52,21 @@ export default function Map({player, setPlayer, finishLoading, changePage}){
   }
   
   const FocusOnPlayer = () =>{
-    if(loaded > 0){
+    if(loaded > 0 && PlayerRef.current){
       PlayerRef.current.scrollIntoView({
         behavior: "smooth", 
         block: "center", 
         inline: "center" 
       })
-      setSelectedNode(player.travelInfo.currentlyOn)
+      setSelectedNode({...player.travelInfo.currentlyOn})
     }
   }
 
   const movePlayer = (node) =>{
+    let p = player;
+    p.travelInfo.currentlyOn = node.id
+    setPlayer(p)
+    
     setPlayerNode(node)
     setSelectedNode(node)
     
@@ -80,13 +82,13 @@ export default function Map({player, setPlayer, finishLoading, changePage}){
 
   const setPlayerNode = (node) =>{
     setPlayerNodeOBJ(node)
-    setPlayer.call(this, {
-      ...player,
-      travelInfo : {
-        ...player.travelInfo,
-        currentlyOn : node.id
-      }
-    })
+
+    let p = player
+    p.travelInfo.currentlyOn = node.id
+
+    
+    console.warn("map.jsx ln:89 \t Unesceseraly runing on Map loading ")
+    //setPlayer(p)
   }
 
   const FindNeibours = () => {
@@ -129,7 +131,7 @@ export default function Map({player, setPlayer, finishLoading, changePage}){
           node={selectedNode}  
         />
           <Player node={playerNode}> 
-            <div ref={PlayerRef}/> 
+            <div ref={PlayerRef.current}/> 
           </Player>
         </>
       )}

@@ -3,6 +3,7 @@ import {innerJointById} from '../utils/utils.js'
 import {isPossible, executeOption} from '../utils/eventUtils.js'
 import eventGenerator from '../classes/eventGenerator'
 import colours from '../utils/colours'
+import SCREENS from '../utils/pages.js'
 
 import Background from "../components/layout/backgroundArea.jsx";
 import BoldText from '../components/text/boldText';
@@ -11,7 +12,7 @@ import DiamondIcon from "../components/diamondIcon.jsx";
 import TextButton from "../components/textButton.jsx";
 
 
-export default function Event(props){
+export default function Event({player, setPlayer, finishLoading, changePage}){
 
     const playerNode = React.useRef();
     const eventGen = React.useRef();
@@ -25,14 +26,14 @@ export default function Event(props){
 
             // Initialize node on witch event ocours
             const dataN = await responseN.json()
-            let node = dataN.find((n)=> n.id == props.player.travelInfo.currentlyOn)
-            node = innerJointById([node] , props.player.travelInfo.discoveredNodes)[0]
+            let node = dataN.find((n)=> n.id ==  player.travelInfo.currentlyOn)
+            node = innerJointById([node] ,  player.travelInfo.discoveredNodes)[0]
             playerNode.current = node;
             
             let Ev = await InitEventPipeline(node)
             setEvent({...Ev})
             
-            props.finishLoading.call(this)
+             finishLoading.call(this)
             FORCE_RENDER(loaded+1)
         }
       
@@ -41,19 +42,26 @@ export default function Event(props){
 
 
     const handleClick = (option) =>{
-        let p = executeOption(props.player, props.setPlayer, option)
+        let p = executeOption( player, option)
         if(!p){
             console.warn("ERROR HANDLING OPTION. eventUtils executeOption() returned " + p)
             console.warn(p)
         }
-        props.setPlayer({...p})
+        
+        console.warn("handlingClick runing on Event.jsx ln:51")
+        setPlayer({...p})
+
+        changePage(SCREENS.MAP)
+        // FORCE
+        
 
         // handle resolve prop from option
         /*
             CONTINUE -> go to next node (default wining state)
             CONTINUE TO -> go to specific node
-            RETURN TO MAP ->  return to map without increasing the node level (default defeat state)
-            END LEVEL -> return to map increasing the node level
+            RETURN TO MAP ->  return to map without increasing the node level
+                                OR MAYBE* if its level 1 return to last node (default defeat state)
+            END LEVEL -> return to map increasing the node level AND MAYBE* update player position to current node
         */
     }
 
@@ -99,7 +107,7 @@ export default function Event(props){
                 }}>
                     {
                         Event.options.map((option)=>{
-                            if(isPossible(props.player, option)){
+                            if(isPossible( player, option)){
                                 return (
                                 <TextButton 
                                     style={{padding: "10px", width:"100%"}} 

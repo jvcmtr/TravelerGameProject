@@ -11,7 +11,7 @@ import BGArea from './components/layout/backgroundArea'
 export default function App() {
   const [loaded, setLoaded] = React.useState(false)
   const player = React.useRef();
-  const setPlayer = (newPlayer) => {player.current = newPlayer}
+  const setPlayer = (newPlayer) => {console.log(newPlayer) ; player.current = newPlayer}
   
   React.useEffect(()=>{
     async function loadData(){
@@ -22,7 +22,9 @@ export default function App() {
 
       setLoaded(true)
     }
-    loadData()
+    if(!loaded){
+      loadData()
+    }
   },[])  
 
   if(!loaded){
@@ -34,7 +36,7 @@ export default function App() {
 
   return (
     <main>
-      <MyNavigator default={Screens.EVENT}>
+      <MyNavigator default={Screens.MAP}>
         <Map
             pageId={Screens.MAP} 
             player={player.current} 

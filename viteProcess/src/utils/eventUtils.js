@@ -1,19 +1,21 @@
 // Executes the outcome of a combat OR a chosen option
     export function executeOption(playerState, option){
-        let player = playerState;
+        let nplayer = playerState;
 
-        for(i=0; i<option.action.methods.length ; i++){
-            let nplayer = eval(`${option.action.methods[i].name}( ${JSON.stringify(playerState)} , ${JSON.stringify(option.action.methods[i].args)})`);
+        for(let i=0; i < option.action.methods.length ; i++){
+            try{
+                nplayer = eval(`${option.action.methods[i].name}( ${JSON.stringify(playerState)} , ${JSON.stringify(option.action.methods[i].args)})`);
+            }catch{
+                continue;
+            }
+
             if(nplayer){
-                player = nplayer;
+                playerState = nplayer;
             }
         }
-
-        return player;
+        return playerState;
     }
 //
-
-
 
 
 
@@ -24,7 +26,6 @@
 
         let r = eval(`${option.possible.method}( ${JSON.stringify(playerState)} , ${JSON.stringify(option.possible.args)} )`);
 
-        console.log(r)
         if(r == undefined){
             console.warn(` unable to resolve ${option.possible.method}( player , ${option.possible.args} ). \n method doesnt Exist `)
         }
@@ -47,6 +48,37 @@ function PlayerHasKey(player, args){
 function PlayerHas(player, args){
     console.warn(" NOT IMPLEMENTED ")
     return true
+}
+
+function PlayerHasQuest(player, args){
+
+    return player.questMarkers.includes(args[0])
+}
+
+
+
+
+//  _________________________________________________ ACTION
+function playerQuestAdd(player, args){
+
+    if(args[0]){
+        player.questMarkers.push(args[0])
+    }
+    return player
+}
+
+function playerDiscoverConnection(player, args){
+    if(args[0]){
+        player.travelInfo.discoveredConnections.push(args[0])
+    }
+    return player
+}
+
+function changePlayerLocation(player, args){
+    if(args[0]){
+        player.travelInfo.currentlyOn = args[0]
+    }
+    return player
 }
 
 

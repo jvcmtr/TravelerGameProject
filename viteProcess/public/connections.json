@@ -2,7 +2,6 @@
   {
     "id": 0,
     "name": "jornada",
-    "discovered" : true,
     "node_a" : 0,
     "node_b" : 1,
     "one_way" : false
@@ -10,7 +9,6 @@
   {
     "id": 1,
     "name": "jornada",
-    "discovered" : true,
     "node_a" : 2,
     "node_b" : 3,
     "one_way" : false
@@ -18,7 +16,6 @@
   {
     "id": 2,
     "name": "jornada",
-    "discovered" : true,
     "node_a" : 0,
     "node_b" : 2,
     "one_way" : false
@@ -26,7 +23,6 @@
   {
     "id": 3,
     "name": "jornada",
-    "discovered" : true,
     "node_a" : 4,
     "node_b" : 1,
     "one_way" : false
@@ -34,9 +30,15 @@
   {
     "id": 4,
     "name": "jornada",
-    "discovered" : true,
     "node_a" : 4,
     "node_b" : 0,
     "one_way" : false
+  },
+  {
+    "id": 5,
+    "name": "jornada",
+    "node_a" : 2,
+    "node_b" : 4,
+    "one_way" : true
   }
 ]

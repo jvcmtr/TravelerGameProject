@@ -1,20 +1,16 @@
 import React from "react"
 import {innerJointById} from '../utils/utils.js'
-import {isPossible, executeOption} from '../utils/eventUtils.js'
 import eventGenerator from '../classes/eventGenerator'
 import SCREENS from '../utils/pages.js'
 
+import ChoiceEvent from "./choiceEvent.jsx"
 import Background from "../components/layout/backgroundArea.jsx";
-import OptionsList from "./optionsList.jsx";
-import Header from "./header.jsx" 
-import MainText from "./mainText.jsx"
 
 
 export default function Event({getPlayer, setPlayer, finishLoading, changePage}){
 
     const player = getPlayer();
     const playerNode = React.useRef();
-    const eventGen = React.useRef();
 
     const [loaded, FORCE_RENDER] = React.useState(0)
     const [Event, setEvent] = React.useState(0); 
@@ -39,53 +35,30 @@ export default function Event({getPlayer, setPlayer, finishLoading, changePage})
         loadData()
     }, [])
 
-    const handleClick = (option) =>{
-        let p = executeOption( player, option)
-        if(!p){
-            console.warn("ERROR HANDLING OPTION. eventUtils executeOption() returned " + p)
-            console.warn(p)
-        }
-        setPlayer({...p})
-
+    const resolve = () => {
         changePage(SCREENS.MAP)
-        // FORCE
-        
 
         // handle resolve prop from option
         /*
-            CONTINUE -> go to next node (default wining state)
-            CONTINUE TO -> go to specific node
+            CONTINUE -> go to next event if amount of events per journey isnt too high(default wining state)
+            CONTINUE TO -> go to specific event
             RETURN TO MAP ->  return to map without increasing the node level
                                 OR MAYBE* if its level 1 return to last node (default defeat state)
             END LEVEL -> return to map increasing the node level AND MAYBE* update player position to current node
         */
     }
 
-    const checkPossible = (args) => isPossible(player, args)
-
     return (
         <Background >
         { (loaded>0) && (
-            <div style={{
-                height: "90vh",
-                padding: "5%",
-                display: "flex",
-                alignItems: "center",
-                flexDirection: "column",
-                justifyContent: "start" 
-            }}>
-                <Header 
-                 node={playerNode.current} 
-                 event={Event}/>
-
-                <MainText event={Event}/>
-
-                <OptionsList 
-                 options={Event.options} 
-                 handle={handleClick} 
-                 checkPossible={checkPossible}/>
-
-        </ div>)}
+            <ChoiceEvent
+                getPlayer={getPlayer}
+                setPlayer={setPlayer}
+                Event={Event}
+                playerNode={playerNode}
+                resolve={resolve}
+            />
+        )}
         { !Event && <h3 style={{color: "#fff"}}> ERROR ON LOADING </h3> }
         </Background>
     )

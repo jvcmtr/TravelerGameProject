@@ -2,14 +2,12 @@ import React from "react"
 import {innerJointById} from '../utils/utils.js'
 import {isPossible, executeOption} from '../utils/eventUtils.js'
 import eventGenerator from '../classes/eventGenerator'
-import colours from '../utils/colours'
 import SCREENS from '../utils/pages.js'
 
 import Background from "../components/layout/backgroundArea.jsx";
-import BoldText from '../components/text/boldText';
-import SimpleText from '../components/text/simpleText.jsx'
-import DiamondIcon from "../components/diamondIcon.jsx";
-import TextButton from "../components/textButton.jsx";
+import OptionsList from "./optionsList.jsx";
+import Header from "./header.jsx" 
+import MainText from "./mainText.jsx"
 
 
 export default function Event({getPlayer, setPlayer, finishLoading, changePage}){
@@ -63,6 +61,8 @@ export default function Event({getPlayer, setPlayer, finishLoading, changePage})
         */
     }
 
+    const checkPossible = (args) => isPossible(player, args)
+
     return (
         <Background >
         { (loaded>0) && (
@@ -74,49 +74,17 @@ export default function Event({getPlayer, setPlayer, finishLoading, changePage})
                 flexDirection: "column",
                 justifyContent: "start" 
             }}>
-                <div style={{
-                    width: "100%",
-                    height: "12%",  
-                    display: "flex",
-                    alignItems: "start",
-                    justifyContent: "start",
-                    gap: "5px"
-                }}>
-                    <SimpleText themeColor={colours.txtSecondary}>  {playerNode.current.name} </SimpleText>
-                    <SimpleText themeColor={colours.txtSecondary}> {"   ♦   "}  </SimpleText>
-                    <BoldText themeColor={colours.txtSecondary}>  {playerNode.current.level} </BoldText>
-                </div>
+                <Header 
+                 node={playerNode.current} 
+                 event={Event}/>
 
-                <div style={{
-                    height: "48%"
-                }}>
-                    <SimpleText themeColor={colours.txtSecondary}> {Event.text} </SimpleText>
-                </div>
+                <MainText event={Event}/>
 
-                <div style={{
-                    height: "min(0, 35%)" ,
-                    width: "100%",
-                    padding: "5%",
-                    marginBottom: "5%",
-                    display: "grid",
-                    gridTemplateColumns: "1fr 1fr 1fr",
-                    gridColumnGap: "5%",
-                    gridRowGap: "20%",
-                }}>
-                    {
-                        Event.options.map((option, index)=>{
-                            if(isPossible( player, option)){
-                                return (
-                                <TextButton 
-                                    key={"OPTION"+index}
-                                    style={{padding: "10px", width:"100%"}} 
-                                    onClick={()=>handleClick(option)}> 
-                                        {option.description} 
-                                </TextButton>)
-                            }
-                        })
-                    }
-                </div>
+                <OptionsList 
+                 options={Event.options} 
+                 handle={handleClick} 
+                 checkPossible={checkPossible}/>
+
         </ div>)}
         { !Event && <h3 style={{color: "#fff"}}> ERROR ON LOADING </h3> }
         </Background>

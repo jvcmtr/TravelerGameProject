@@ -36,9 +36,8 @@ export default function Map({getPlayer, setPlayer, finishLoading, changePage}){
       let node = dataN.find((n)=>{
         return n.id == player.travelInfo.currentlyOn
       })
+
       setSelectedNode(node)
-      
-      console.warn("setPlayer on MAP LOAD -> useEffect")
       setPlayerNode(node)
       
       FORCE_RENDER(loaded+1)
@@ -110,6 +109,13 @@ export default function Map({getPlayer, setPlayer, finishLoading, changePage}){
     return []
   }
   
+  React.useEffect(()=>{
+    if(loaded == 1){
+      FocusOnPlayer()
+      FORCE_RENDER(loaded+1)
+    }
+  }, [loaded])
+
   return (
     <div style={{display: 'inline-block', position: "absolute", top:"0", left:"0"}} >
       <Background/>
@@ -127,10 +133,11 @@ export default function Map({getPlayer, setPlayer, finishLoading, changePage}){
           node={selectedNode}  
         />
           <Player node={playerNode}> 
-            <div ref={PlayerRef.current}/> 
+            <div ref={PlayerRef}/> 
           </Player>
         </>
       )}
+
       <Button onClick={FocusOnPlayer}   
         img="https://icons.veryicon.com/png/o/miscellaneous/offerino-icons/target-39.png" 
         style={{        

@@ -69,7 +69,7 @@ function playerQuestAdd(player, args){
 
 function playerDiscoverConnection(player, args){
     if(args[0]){
-        player.travelInfo.discoveredConnections.push(args[0])
+        player.travelInfo.discoveredConnections.push({id: args[0]})
     }
     return player
 }

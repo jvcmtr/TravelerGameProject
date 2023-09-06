@@ -82,8 +82,8 @@
   "concluded_level": false,
   "event_generator": 0,
   "special_events": [{
-    "event_id": 0,
-    "ocouring_level": 20
+    "event_id": 3,
+    "ocouring_level": 1
   }],
 
   "connection_ids": [3, 4]

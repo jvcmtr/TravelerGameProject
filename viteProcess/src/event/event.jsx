@@ -41,15 +41,12 @@ export default function Event({getPlayer, setPlayer, finishLoading, changePage})
         loadData()
     }, [])
 
-
     const handleClick = (option) =>{
         let p = executeOption( player, option)
         if(!p){
             console.warn("ERROR HANDLING OPTION. eventUtils executeOption() returned " + p)
             console.warn(p)
         }
-        
-        console.warn("handlingClick runing on Event.jsx ln:51")
         setPlayer({...p})
 
         changePage(SCREENS.MAP)

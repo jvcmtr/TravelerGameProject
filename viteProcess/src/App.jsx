@@ -37,7 +37,7 @@ export default function App() {
 
   return (
     <main>
-      <MyNavigator default={Screens.EVENT}>
+      <MyNavigator default={Screens.MAP}>
         <Map
             pageId={Screens.MAP} 
             getPlayer={getPlayer} 

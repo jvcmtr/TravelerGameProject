@@ -10,9 +10,8 @@ export default function SideDescription(props){
   const [active, setActive] = React.useState(true)
   const [hover, setHover] = React.useState(false)
 
-  let node = props.node
   const TravelButtonRef = React.useRef()
-  const travelAllowed = props.travelAllowedFor.includes(node.id)
+  const travelAllowed = props.travelAllowedFor.includes(props.node.id)
   
   const Width = 27
   var translate = 0;
@@ -30,7 +29,7 @@ export default function SideDescription(props){
   
   const handleKey = (e) =>{
     if(e.key == "Enter" && travelAllowed){
-      props.travelTo.call(this, node); 
+      props.travelTo.call(this, props.node); 
       e.stopPropagation() 
     }
   }
@@ -64,7 +63,7 @@ export default function SideDescription(props){
           </TextButton>
         </div>
         
-        <Title> {node.name} </Title>
+        <Title> {props.node.name} </Title>
         
         <div style={{
             display:'flex', 
@@ -73,16 +72,16 @@ export default function SideDescription(props){
             marginTop:'20px'
           }}>
           <DiamondIcon>
-            {node.symbol}
+            {props.node.symbol}
           </DiamondIcon>
-          {node.concluded &&(<Text><i>cleared</i></Text>)}
+          {props.node.concluded &&(<Text><i>cleared</i></Text>)}
         </div>
         
         {
           // IMAGEM DO PONTO DE INTERESSE
         }
         
-        <Text> {node.description} </Text>
+        <Text> {props.node.description} </Text>
 
         <div 
           style={{marginTop: '30px'}} 
@@ -93,11 +92,11 @@ export default function SideDescription(props){
           <TextButton 
             disable={!travelAllowed}
             onClick={(e)=>{
-              props.travelTo.call(this, node); 
+              props.travelTo.call(this, props.node); 
               e.stopPropagation()} 
           }>
             {
-              (node.id == props.travelAllowedFor[0]) ? "Investigar " : "Viajar para : "
+              (props.node.id == props.travelAllowedFor[0]) ? "Investigar " : "Viajar para : "
             }
             {props.node.name}
           </TextButton>

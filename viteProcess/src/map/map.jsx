@@ -19,7 +19,6 @@ export default function Map({getPlayer, setPlayer, finishLoading, changePage}){
   const nodes = React.useRef([]);
   const edges = React.useRef([]);
 
-  const NeibouringNodes = React.useRef([])
   const [selectedNode, setSelectedNode] = React.useState({})
   const [activeSidebar, setActiveSidebar] = React.useState(true)
 
@@ -37,9 +36,9 @@ export default function Map({getPlayer, setPlayer, finishLoading, changePage}){
         return n.id == player.travelInfo.currentlyOn
       })
 
-      setSelectedNode(node)
       setPlayerNode(node)
-      
+      changeFocus(node)
+            
       FORCE_RENDER(loaded+1)
       finishLoading.call(this)
     }
@@ -89,7 +88,7 @@ export default function Map({getPlayer, setPlayer, finishLoading, changePage}){
   const FindNeibours = () => {
     if(loaded > 0){
       let neibours = []
-      neibours.push(playerNode)
+      neibours.push(playerNode.id)
       
       edges.current.forEach((x)=>{
         let a = x.node_a;
@@ -103,7 +102,6 @@ export default function Map({getPlayer, setPlayer, finishLoading, changePage}){
         }
       })
 
-      NeibouringNodes.current = neibours
       return(neibours) 
     }
     return []

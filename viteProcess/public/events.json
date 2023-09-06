@@ -42,6 +42,44 @@
                         "args" : []  
                     }
                 }
+            },
+            {
+                "description" : "This is !option one",
+                "possible" : {
+                    "method" : "PlayerHas",
+                    "args" : ["DM_killing_sword"] 
+                },
+                "action" : {
+                    "methods": [
+                        {
+                            "method" : "killPlayer",
+                            "args": []
+                        }
+                    ],
+                    "resolve":{
+                        "name" : "returnToMap",
+                        "args" : []  
+                    }
+                }
+            },
+            {
+                "description" : "This is !option one",
+                "possible" : {
+                    "method" : "PlayerHas",
+                    "args" : ["DM_killing_sword"] 
+                },
+                "action" : {
+                    "methods": [
+                        {
+                            "method" : "killPlayer",
+                            "args": []
+                        }
+                    ],
+                    "resolve":{
+                        "name" : "returnToMap",
+                        "args" : []  
+                    }
+                }
             }
         ]
     },
@@ -52,7 +90,7 @@
         "text" : "  simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets",
         "options" : [
             {
-                "description" : "Chalenge the evil DM",
+                "description" : "option 1",
                 "possible" : {
                     "method" : "PlayerHas",
                     "args" : ["DM_killing_sword"] 
@@ -72,7 +110,87 @@
             },
 
             {
-                "description" : "Dont chalenge the evil DM",
+                "description" : "Option 2 ",
+                "action" : {
+                    "methods": [
+                        {
+                            "name": "looseGold", 
+                            "args": [200]
+                        }
+                    ],
+                    "resolve":{
+                        "name" : "returnToMap",
+                        "args" : []  
+                    }
+                }
+            },
+
+            {
+                "description" : "Option 3 ",
+                "action" : {
+                    "methods": [
+                        {
+                            "name": "looseGold", 
+                            "args": [200]
+                        }
+                    ],
+                    "resolve":{
+                        "name" : "returnToMap",
+                        "args" : []  
+                    }
+                }
+            },
+
+            {
+                "description" : "Option 4 ",
+                "action" : {
+                    "methods": [
+                        {
+                            "name": "looseGold", 
+                            "args": [200]
+                        }
+                    ],
+                    "resolve":{
+                        "name" : "returnToMap",
+                        "args" : []  
+                    }
+                }
+            },
+
+            {
+                "description" : "Option 5 ",
+                "action" : {
+                    "methods": [
+                        {
+                            "name": "looseGold", 
+                            "args": [200]
+                        }
+                    ],
+                    "resolve":{
+                        "name" : "returnToMap",
+                        "args" : []  
+                    }
+                }
+            },
+
+            {
+                "description" : "Option 6 ",
+                "action" : {
+                    "methods": [
+                        {
+                            "name": "looseGold", 
+                            "args": [200]
+                        }
+                    ],
+                    "resolve":{
+                        "name" : "returnToMap",
+                        "args" : []  
+                    }
+                }
+            },
+
+            {
+                "description" : "Option 7 ",
                 "action" : {
                     "methods": [
                         {

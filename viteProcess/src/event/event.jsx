@@ -92,16 +92,16 @@ export default function Event({getPlayer, setPlayer, finishLoading, changePage})
                 }}>
                     <SimpleText themeColor={colours.txtSecondary}> {Event.text} </SimpleText>
                 </div>
- 
+
                 <div style={{
-                    height: "35%" ,
+                    height: "min(0, 35%)" ,
+                    width: "100%",
+                    padding: "5%",
                     marginBottom: "5%",
-                    gap: "10%",
-                    display: "flex",
-                    flexWrap: "wrap",
-                    flexDirection: "column",
-                    justifyContent: "center",
-                    alignItems: "center"
+                    display: "grid",
+                    gridTemplateColumns: "1fr 1fr 1fr",
+                    gridColumnGap: "5%",
+                    gridRowGap: "20%",
                 }}>
                     {
                         Event.options.map((option, index)=>{

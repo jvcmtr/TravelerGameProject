@@ -11,7 +11,8 @@ import BGArea from './components/layout/backgroundArea'
 export default function App() {
   const [loaded, setLoaded] = React.useState(false)
   const player = React.useRef();
-  const setPlayer = (newPlayer) => {console.log(newPlayer) ; player.current = newPlayer}
+  const setPlayer = (newPlayer) => { player.current = newPlayer}
+  const getPlayer = () => {return player.current} // This is required to make sure the player.current is properly loaded/updated on the child components. i am not realy sure why. 
   
   React.useEffect(()=>{
     async function loadData(){
@@ -39,13 +40,13 @@ export default function App() {
       <MyNavigator default={Screens.MAP}>
         <Map
             pageId={Screens.MAP} 
-            player={player.current} 
+            getPlayer={getPlayer} 
             setPlayer={setPlayer} 
         />
 
         <Event
             pageId={Screens.EVENT} 
-            player={player.current} 
+            getPlayer={getPlayer} 
             setPlayer={setPlayer} 
         />
 

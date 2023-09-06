@@ -9,8 +9,9 @@ import PathDrawer from './pathDrawer'
 import SideDescription from './nodeDescription'
 import Player from './playerIcon'
 
-export default function Map({player, setPlayer, finishLoading, changePage}){
+export default function Map({getPlayer, setPlayer, finishLoading, changePage}){
 
+  const player = getPlayer();
   const [loaded, FORCE_RENDER] = React.useState(0)
   const [playerNode, setPlayerNodeOBJ] = React.useState()
   const PlayerRef = React.useRef()
@@ -36,6 +37,8 @@ export default function Map({player, setPlayer, finishLoading, changePage}){
         return n.id == player.travelInfo.currentlyOn
       })
       setSelectedNode(node)
+      
+      console.warn("setPlayer on MAP LOAD -> useEffect")
       setPlayerNode(node)
       
       FORCE_RENDER(loaded+1)
@@ -63,10 +66,6 @@ export default function Map({player, setPlayer, finishLoading, changePage}){
   }
 
   const movePlayer = (node) =>{
-    let p = player;
-    p.travelInfo.currentlyOn = node.id
-    setPlayer(p)
-    
     setPlayerNode(node)
     setSelectedNode(node)
     
@@ -84,11 +83,8 @@ export default function Map({player, setPlayer, finishLoading, changePage}){
     setPlayerNodeOBJ(node)
 
     let p = player
-    p.travelInfo.currentlyOn = node.id
-
-    
-    console.warn("map.jsx ln:89 \t Unesceseraly runing on Map loading ")
-    //setPlayer(p)
+    p.travelInfo.currentlyOn = node.id    
+    setPlayer(p)
   }
 
   const FindNeibours = () => {

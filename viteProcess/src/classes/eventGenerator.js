@@ -11,7 +11,7 @@ export default class EventGenerator extends React.Component {
         let weigthtedEvents = []
         this.state.events.forEach(ev => {
             for (let i = 0; i < ev.chance ; i++) {
-                weigthtedEvents.push(ev)
+                weigthtedEvents.push({localKey: i, ...ev})
             }
         });
 

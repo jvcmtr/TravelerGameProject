@@ -12,8 +12,9 @@ import DiamondIcon from "../components/diamondIcon.jsx";
 import TextButton from "../components/textButton.jsx";
 
 
-export default function Event({player, setPlayer, finishLoading, changePage}){
+export default function Event({getPlayer, setPlayer, finishLoading, changePage}){
 
+    const player = getPlayer();
     const playerNode = React.useRef();
     const eventGen = React.useRef();
 
@@ -106,10 +107,11 @@ export default function Event({player, setPlayer, finishLoading, changePage}){
                     alignItems: "center"
                 }}>
                     {
-                        Event.options.map((option)=>{
+                        Event.options.map((option, index)=>{
                             if(isPossible( player, option)){
                                 return (
                                 <TextButton 
+                                    key={"OPTION"+index}
                                     style={{padding: "10px", width:"100%"}} 
                                     onClick={()=>handleClick(option)}> 
                                         {option.description} 

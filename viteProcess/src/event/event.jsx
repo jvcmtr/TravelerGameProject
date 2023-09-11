@@ -14,10 +14,9 @@ export default function Event({getPlayer, setPlayer, finishLoading, changePage})
 
     const [loaded, FORCE_RENDER] = React.useState(0)
     const [Event, setEvent] = React.useState(0); 
-    const eventGenerator = React.useState()
     const eventCounter = React.useRef(0)
 
-    React.useLayoutEffect(()=>{
+    React.useEffect(()=>{
         async function loadData(){   
             const responseN = await fetch('public/mapNodes.json')
 
@@ -26,13 +25,9 @@ export default function Event({getPlayer, setPlayer, finishLoading, changePage})
             let node = dataN.find((n)=> n.id ==  player.travelInfo.currentlyOn)
             node = innerJointById([node] ,  player.travelInfo.discoveredNodes)[0]
             playerNode.current = node;
-            
-            // Initialize EVENT GENERATOR
-            eventGen = await getEventGenerator(node)
-            eventGenerator.current = eventGen
 
             // init EVENT
-            let Ev = await InitEvent(node,eventGen)
+            let Ev = await InitEvent(node)
             eventCounter.current += 1
             setEvent({...Ev})
             
@@ -43,9 +38,25 @@ export default function Event({getPlayer, setPlayer, finishLoading, changePage})
         loadData()
     }, [])
 
-    const resolve = (resolveInfo) => {
-        if(resolveInfo.name == "CONINUE"){ // default neutral state (keep exploring)
-            getNextEvent(eventGenerator, resolveInfo.args)
+    const resolve = async (resolveInfo) => {
+
+        if(resolveInfo.name == "CONTINUE"){ // default neutral state
+            if(eventCounter.current <= (playerNode.current.level%5)+2 ){
+                eventCounter.current += 1
+                let eventGen = await getEventGenerator(playerNode.current)
+                let Ev = await getNextEvent(resolveInfo.args,eventGen)
+                setEvent(Ev)
+            }
+            else{
+                resolveInfo.name = "FINISH"
+            }
+        }
+
+        if(resolveInfo.name == "CONTINUE_TO"){ // default neutral state (force new event)
+            eventCounter.current += 1
+            let eventGen = await getEventGenerator(playerNode.current)
+            let Ev = await getNextEvent(resolveInfo.args,eventGen)
+            setEvent(Ev)
         }
 
         if(resolveInfo.name == "RETURN"){ // default losing state
@@ -90,14 +101,14 @@ export default function Event({getPlayer, setPlayer, finishLoading, changePage})
 }
 
 
-async function getNextEvent(eventGenerator, args){
+async function getNextEvent(args , eventGen){
     let responseEv = await fetch('public/events.json') 
     const dataEv = await responseEv.json()
 
     let eventId = -1
 
-    if(!args[0]){
-        eventId = eventGenerator.getRandom()
+    if(!args[0]){    
+        eventId = eventGen.getRandom().event_id
     }
     else {
         eventId = args[0]
@@ -106,9 +117,9 @@ async function getNextEvent(eventGenerator, args){
     return dataEv.find((e) => {return e.id == eventId} )
 }
 
-async function InitEvent(currentNode, eventGenerator){
+async function InitEvent(currentNode){
     let responseEv = fetch('public/events.json') 
-    let eventGenerator = getEventGenerator(currentNode)
+    let eventGenerator = await getEventGenerator(currentNode)
 
     // Find the ID of the current Event
     let eventId = -1

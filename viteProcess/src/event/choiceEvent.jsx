@@ -18,7 +18,7 @@ export default function ChoiceEvent({getPlayer, setPlayer, Event, playerNode, re
         }
         setPlayer({...p})
 
-        resolve(option.resolve)
+        resolve(option.action.resolve)
     }
 
     const checkPossible = (args) => isPossible(player, args)
@@ -37,7 +37,7 @@ export default function ChoiceEvent({getPlayer, setPlayer, Event, playerNode, re
                  event={Event}/>
 
                 <MainText event={Event}/>
-
+                
                 <OptionsList 
                  options={Event.options} 
                  handle={handleClick} 

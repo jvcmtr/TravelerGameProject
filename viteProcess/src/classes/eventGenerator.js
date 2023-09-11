@@ -7,7 +7,7 @@ export default class EventGenerator extends React.Component {
         this.state = {...obj};
     }
 
-    getRandom(obj){
+    getRandom(){
         let weigthtedEvents = []
         this.state.events.forEach(ev => {
             for (let i = 0; i < ev.chance ; i++) {

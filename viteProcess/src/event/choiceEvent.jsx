@@ -18,7 +18,7 @@ export default function ChoiceEvent({getPlayer, setPlayer, Event, playerNode, re
         }
         setPlayer({...p})
 
-        resolve()
+        resolve(option.resolve)
     }
 
     const checkPossible = (args) => isPossible(player, args)

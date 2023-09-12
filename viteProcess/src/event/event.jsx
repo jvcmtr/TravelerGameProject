@@ -1,9 +1,10 @@
 import React from "react"
 import {innerJointById} from '../utils/utils.js'
-import eventGenerator from '../classes/eventGenerator'
+import eventGenerator from '../utils/eventGenerator.js'
 import SCREENS from '../utils/pages.js'
 
 import ChoiceEvent from "./choiceEvent.jsx"
+import CombatEvent from "../combat/CombatEvent.jsx"
 import Background from "../components/layout/backgroundArea.jsx";
 
 
@@ -55,7 +56,7 @@ export default function Event({getPlayer, setPlayer, finishLoading, changePage})
         if(resolveInfo.name == "CONTINUE_TO"){ // default neutral state (force new event)
             eventCounter.current += 1
             let eventGen = await getEventGenerator(playerNode.current)
-            let Ev = await getNextEvent(resolveInfo.args,eventGen)
+            let Ev = await getNextEvent(resolveInfo.args , eventGen )
             setEvent(Ev)
         }
 
@@ -65,11 +66,18 @@ export default function Event({getPlayer, setPlayer, finishLoading, changePage})
 
         if(resolveInfo.name == "FINISH"){ // default wining state
             let p = player
+
+            // Increment Level
             p.travelInfo.discoveredNodes.forEach((node,index)=>{
-                if(node.id == playerNode.id){
-                    p.travelInfo.discoveredNodes[index] += 1
+                if(node.id == playerNode.current.id){
+                    let _id = p.travelInfo.discoveredNodes[index].id
+                    let _level = p.travelInfo.discoveredNodes[index].level
+                    if(_level <= 20){
+                        p.travelInfo.discoveredNodes[index].level += 1
+                    }
                 }
             })
+
             setPlayer(p)
             changePage(SCREENS.MAP)
         }
@@ -86,8 +94,18 @@ export default function Event({getPlayer, setPlayer, finishLoading, changePage})
 
     return (
         <Background >
-        { (loaded>0) && (
+        { (loaded>0) && (Event.type == "choice") && (
             <ChoiceEvent
+                getPlayer={getPlayer}
+                setPlayer={setPlayer}
+                Event={Event}
+                playerNode={playerNode}
+                resolve={resolve}
+            />
+        )}
+
+        { (loaded>0) && (Event.type == "combat") && (
+            <CombatEvent
                 getPlayer={getPlayer}
                 setPlayer={setPlayer}
                 Event={Event}
@@ -114,7 +132,17 @@ async function getNextEvent(args , eventGen){
         eventId = args[0]
     }
 
-    return dataEv.find((e) => {return e.id == eventId} )
+    let Ev = dataEv.find((e) => {return e.id == eventId} )
+
+    if(Ev.type == "combat"){
+        if(args[1]){
+            Ev.case_win = args[1]
+        }
+        if(args[2]){
+            Ev.case_lose = args[2]
+        }
+    }
+    return Ev
 }
 
 async function InitEvent(currentNode){

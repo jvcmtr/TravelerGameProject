@@ -64,12 +64,12 @@ export default function SideDescription(props){
         </div>
         
         <Title> {props.node.name} </Title>
-        
+
         <div style={{
             display:'flex', 
             flexDirection:"row", 
             justifyContent:"space-eevenly", 
-            marginTop:'20px'
+            marginTop:'30px'
           }}>
           <DiamondIcon>
             {props.node.symbol}
@@ -101,6 +101,8 @@ export default function SideDescription(props){
             {props.node.name}
           </TextButton>
         </div>
+        
+        <Text><i>Level: {props.node.level}</i></Text>
         
       </div>
     </Area>

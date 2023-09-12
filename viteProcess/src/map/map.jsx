@@ -19,7 +19,7 @@ export default function Map({getPlayer, setPlayer, finishLoading, changePage}){
   const nodes = React.useRef([]);
   const edges = React.useRef([]);
 
-  const [selectedNode, setSelectedNode] = React.useState({})
+  const [selectedNode, setSelectedNode] = React.useState()
   const [activeSidebar, setActiveSidebar] = React.useState(true)
 
   React.useEffect(()=>{
@@ -32,14 +32,12 @@ export default function Map({getPlayer, setPlayer, finishLoading, changePage}){
       edges.current = innerJointById(player.travelInfo.discoveredConnections, dataE)
       nodes.current = innerJointById(player.travelInfo.discoveredNodes, dataN)
 
-      let node = dataN.find((n)=>{
+      let node = nodes.current.find((n)=>{
         return n.id == player.travelInfo.currentlyOn
       })
 
       setPlayerNode(node)
       changeFocus(node)
-            
-      FORCE_RENDER(loaded+1)
       finishLoading.call(this)
     }
 
@@ -59,7 +57,7 @@ export default function Map({getPlayer, setPlayer, finishLoading, changePage}){
         block: "center", 
         inline: "center" 
       })
-      setSelectedNode({...player.travelInfo.currentlyOn})
+      setSelectedNode({...playerNode})
     }
   }
 

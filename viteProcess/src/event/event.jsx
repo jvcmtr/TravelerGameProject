@@ -1,5 +1,6 @@
 import React from "react"
 import {innerJointById} from '../utils/utils.js'
+import RULES from "../utils/RulesConfig.js"
 import eventGenerator from '../utils/eventGenerator.js'
 import SCREENS from '../utils/pages.js'
 
@@ -42,7 +43,7 @@ export default function Event({getPlayer, setPlayer, finishLoading, changePage})
     const resolve = async (resolveInfo) => {
 
         if(resolveInfo.name == "CONTINUE"){ // default neutral state
-            if(eventCounter.current <= (playerNode.current.level%5)+2 ){
+            if(eventCounter.current <= RULES.TARGET_EVENT_BY_DEPTH(playerNode.current.level) ){
                 eventCounter.current += 1
                 let eventGen = await getEventGenerator(playerNode.current)
                 let Ev = await getNextEvent(resolveInfo.args,eventGen)
@@ -72,7 +73,7 @@ export default function Event({getPlayer, setPlayer, finishLoading, changePage})
                 if(node.id == playerNode.current.id){
                     let _id = p.travelInfo.discoveredNodes[index].id
                     let _level = p.travelInfo.discoveredNodes[index].level
-                    if(_level <= 20){
+                    if(_level <= RULES.MAX_EXPLORATION_DEPTH){
                         p.travelInfo.discoveredNodes[index].level += 1
                     }
                 }

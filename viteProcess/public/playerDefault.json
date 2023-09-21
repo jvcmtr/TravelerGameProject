@@ -1,24 +1,35 @@
 {
+	"level": 1,
+	"xp": 0,
+
 	"statistics": {
-		"hp": 0
+		"strength" : 0,
+		"agility" : 0,
+		"inteligence" : 0,
+		"will" : 0,
+		"endurance" : 0
 	},
+
+	
+
 	"Skills": {
 		"passive": [],
 		"active": [],
-		"passiveEquiped": [],
-		"ofensiveEquiped": {
+		"passive_equiped": [],
+		"ofensive_equiped": {
 			"slot1": "ID",
 			"slot2": "ID",
 			"slot3": "ID",
 			"slot4": "ID"
 		},
-		"defensiveEquiped": {
+		"defensive_equiped": {
 			"slot1": "ID",
 			"slot2": "ID",
 			"slot3": "ID",
 			"slot4": "ID"
 		}
 	},
+
 	"inventory": {
 		"Equiped": [],
 		"keys": [],

@@ -24,7 +24,7 @@
             "status_immunities": [],
             "damage_resistances": [],
             "damage_imunities":[],
-            "damage_weaknesses":[],
+            "damage_weaknesses":[]
         },
 
         "garantied_loot" :  [

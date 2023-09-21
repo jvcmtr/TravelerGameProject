@@ -20,8 +20,10 @@
 
             "ofensive_skils":[],
             "defensive_skills":[],
+
             "special_effects" : [],
             "status_immunities": [],
+
             "damage_resistances": [],
             "damage_imunities":[],
             "damage_weaknesses":[]

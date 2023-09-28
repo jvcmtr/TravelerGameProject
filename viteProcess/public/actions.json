@@ -3,20 +3,24 @@
         "id":0,
         "type": "",
 
-        "stamina_cost": 1,
-        "health_cost": 0,
+        "modifiers":{
+            "HP_cost": 0,
+            "SP_cost": 0,
+            "attack_bonus": 0,
+            "precision_bonus":0,
+            "defense_bonus":0,
+            "dodge_bonus":0
+        },
 
-        "atack_bonus":0,
-        "precision_bonus": 0,
-        "defense_bonus": 0,
-        "dodge_bonus": 0,
+        "effects" : {
+            "special_effects" : [],
+            "hit_effects":[],
+            "user_effects": [] 
+        },
 
         "isMelee": false,
         "AoE_Type": "",
         "auto_target" : [-1],
-
-        "special_effects":[],
-        "statusEffects":[],
 
         "required_armour":[],
         "required_weapons" : [],

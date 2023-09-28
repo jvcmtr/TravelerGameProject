@@ -5,14 +5,22 @@
         "armour_type": "",
         "tags": [],
 
-        "attack_bonus": 0,
-        "precision_bonus": 0,
-        "defense_bonus" : 0,
-        "dodge_bonus" : 0,
-
         "damage_resistances" : [],
-        "action_effects": [],
-        "user_effects": []
+
+        "modifiers":{
+            "HP_cost": 0,
+            "SP_cost": 0,
+            "attack_bonus": 0,
+            "precision_bonus":0,
+            "defense_bonus":0,
+            "dodge_bonus":0
+        },
+        
+        "effects" : {
+            "special_effects" : [],
+            "hit_effects":[],
+            "user_effects": [] 
+        }
     }
 
 ]

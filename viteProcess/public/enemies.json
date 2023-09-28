@@ -1,7 +1,7 @@
 [
     {
         "id":0,
-        "type":"",
+        "types": [],
         "decision_process": "",
 
         "statistics": {
@@ -12,21 +12,45 @@
             "endurance" : 0
         },
 
+
         "combat_info":{
-            "atack_bonus":0,
-            "precision_bonus": 0,
-            "defense_bonus": 0,
-            "dodge_bonus": 0,
-
-            "ofensive_skils":[],
-            "defensive_skills":[],
-
-            "special_effects" : [],
-            "status_immunities": [],
-
-            "damage_resistances": [],
-            "damage_imunities":[],
-            "damage_weaknesses":[]
+            "modifiers":{
+                "HP_cost": 0,
+                "SP_cost": 0,
+                "attack_bonus": 0,
+                "precision_bonus":0,
+                "defense_bonus":0,
+                "dodge_bonus":0
+            },
+    
+            "effects" : {
+                "special_effects" : [],
+                "hit_effects":[],
+                "user_effects": [] 
+            },
+    
+            "combat_stats":{
+                "HP":0,
+                "Max_HP":0,
+                "SP":0,
+                "MAX_SP":0,
+    
+                "PRIVATE":{
+                    "TRUE_MAX_HP":0,
+                    "TRUE_MAX_SP":0
+                }
+            },
+    
+            "vulnerabilities":{
+                "weaknesses":[],
+                "resistances":[],
+                "status_immunities":[]
+            }
+        },
+    
+        "equipment":{
+            "weapon_types":[],
+            "armours_tags":[]
         },
 
         "garantied_loot" :  [

@@ -40,6 +40,6 @@ export default function background(){
         left:0,
         //transform: 'scale(0.5) translate(-50%, -50%)',
       }} 
-      src='public/worldMap2.jpg'/>
+      src='public/images/worldMap2.jpg'/>
   )
 }

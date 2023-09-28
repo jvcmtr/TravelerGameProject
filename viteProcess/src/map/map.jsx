@@ -26,7 +26,6 @@ export default function Map({getPlayer, setPlayer, finishLoading, changePage}){
     async function loadData(){   
       const data = await loader.getMapData(player)
 
-      console.log(data)
       edges.current = data.edges
       nodes.current = data.nodes
 

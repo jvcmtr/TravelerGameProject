@@ -36,7 +36,21 @@ async function getEventDataByNode(currentNode){ // current node must have level 
 }
 
 async function getCombatData(){
+    const responseE = await fetch('public/enemies.json')
+    const responseA = await fetch('public/actions.json')
+    const responseW = await fetch('public/weapons.json')
+    const responseAr= await fetch('public/armours.json')
+    const responseI = await fetch('public/items.json')
 
+    var data = {
+        enemies : await responseE.json(),
+        actions : await responseA.json(),
+        weapons : await responseW.json(),
+        armours : await responseAr.json(),
+         items  : await responseI.json()
+    }
+
+    return await joinCombatData(data)
 }
 
 async function getCurrentNode(player){
@@ -86,7 +100,6 @@ export default loader
 
 // __________________________________ LOCAL _______________________________________________________________________
 async function joinCombatData(data){
-
     return data
 }
 

@@ -1,6 +1,6 @@
 import React from 'react'
-import {innerJointById} from '../utils/utils.js'
 import SCREENS from '../utils/pages.js'
+import loader from '../utils/loaderUtils.js'
 
 import Background from './mapImage.jsx'
 import Button from '../components/button'
@@ -24,13 +24,11 @@ export default function Map({getPlayer, setPlayer, finishLoading, changePage}){
 
   React.useEffect(()=>{
     async function loadData(){   
-      const responseE = await fetch('public/connections.json')
-      const responseN = await fetch('public/mapNodes.json')
-      const dataE = await responseE.json()
-      const dataN = await responseN.json()
+      const data = await loader.getMapData(player)
 
-      edges.current = innerJointById(player.travelInfo.discoveredConnections, dataE)
-      nodes.current = innerJointById(player.travelInfo.discoveredNodes, dataN)
+      console.log(data)
+      edges.current = data.edges
+      nodes.current = data.nodes
 
       let node = nodes.current.find((n)=>{
         return n.id == player.travelInfo.currentlyOn

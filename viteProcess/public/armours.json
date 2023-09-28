@@ -1,0 +1,18 @@
+[
+    {
+        "id":0,
+        "name": "",
+        "armour_type": "",
+        "tags": [],
+
+        "attack_bonus": 0,
+        "precision_bonus": 0,
+        "defense_bonus" : 0,
+        "dodge_bonus" : 0,
+
+        "damage_resistances" : [],
+        "action_effects": [],
+        "user_effects": []
+    }
+
+]

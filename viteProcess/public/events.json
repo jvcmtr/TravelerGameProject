@@ -211,7 +211,7 @@
         "type" : "combat",
         "background_image" : "",
         "enviroment_conditions" : [],
-
+ 
         "enemy_pos2" : "mean Big ogre ID",
         "enemy_pos4" : "i dont want enemies on poition 3",
         "enemy_pos5" : "max number is 6",

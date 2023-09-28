@@ -1,6 +1,7 @@
 import React from "react"
 import {innerJointById} from '../utils/utils.js'
 import RULES from "../utils/RulesConfig.js"
+import loader from '../utils/loaderUtils.js'
 import eventGenerator from '../utils/eventGenerator.js'
 import SCREENS from '../utils/pages.js'
 
@@ -20,16 +21,10 @@ export default function Event({getPlayer, setPlayer, finishLoading, changePage})
 
     React.useEffect(()=>{
         async function loadData(){   
-            const responseN = await fetch('public/mapNodes.json')
+            let node = await loader.getCurrentNode(player)
+            playerNode.current = node
 
-            // Initialize NODE on witch event ocours
-            const dataN = await responseN.json()
-            let node = dataN.find((n)=> n.id ==  player.travelInfo.currentlyOn)
-            node = innerJointById([node] ,  player.travelInfo.discoveredNodes)[0]
-            playerNode.current = node;
-
-            // init EVENT
-            let Ev = await InitEvent(node)
+            let Ev = await loader.getEventDataByNode(node)
             eventCounter.current += 1
             setEvent({...Ev})
             
@@ -41,11 +36,10 @@ export default function Event({getPlayer, setPlayer, finishLoading, changePage})
     }, [])
 
     const resolve = async (resolveInfo) => {
-
         if(resolveInfo.name == "CONTINUE"){ // default neutral state
             if(eventCounter.current <= RULES.TARGET_EVENT_BY_DEPTH(playerNode.current.level) ){
                 eventCounter.current += 1
-                let eventGen = await getEventGenerator(playerNode.current)
+                let eventGen = await loader.getEventGenerator(playerNode.current)
                 let Ev = await getNextEvent(resolveInfo.args,eventGen)
                 setEvent(Ev)
             }
@@ -54,9 +48,9 @@ export default function Event({getPlayer, setPlayer, finishLoading, changePage})
             }
         }
 
-        if(resolveInfo.name == "CONTINUE_TO"){ // default neutral state (force new event)
+        if(resolveInfo.name == "CONTINUE_TO"){ // neutral state (force new event)
             eventCounter.current += 1
-            let eventGen = await getEventGenerator(playerNode.current)
+            let eventGen = await loader.getEventGenerator(playerNode.current)
             let Ev = await getNextEvent(resolveInfo.args , eventGen )
             setEvent(Ev)
         }
@@ -82,15 +76,6 @@ export default function Event({getPlayer, setPlayer, finishLoading, changePage})
             setPlayer(p)
             changePage(SCREENS.MAP)
         }
-
-        // handle resolve prop from option
-        /*
-            CONTINUE -> go to next event if amount of events per journey isnt too high(default wining state)
-            CONTINUE (to) -> same name but receives an id as args .go to specific event
-            RETURN (to map) ->  return to map without increasing the node level
-                                OR MAYBE* if its level 1 return to last node (default defeat state)
-            FINISH -> return to map increasing the node level AND MAYBE* update player position to current node
-        */
     }
 
     return (
@@ -121,9 +106,7 @@ export default function Event({getPlayer, setPlayer, finishLoading, changePage})
 
 
 async function getNextEvent(args , eventGen){
-    let responseEv = await fetch('public/events.json') 
-    const dataEv = await responseEv.json()
-
+    const dataEv = await loader.getAllEvents()
     let eventId = -1
 
     if(!args[0]){    
@@ -144,43 +127,4 @@ async function getNextEvent(args , eventGen){
         }
     }
     return Ev
-}
-
-async function InitEvent(currentNode){
-    let responseEv = fetch('public/events.json') 
-    let eventGenerator = await getEventGenerator(currentNode)
-
-    // Find the ID of the current Event
-    let eventId = -1
-    currentNode.special_events.forEach(element => {
-        if(element.ocouring_level == currentNode.level){
-            eventId = element.event_id
-        }
-    });
-    if(eventId == -1){
-        eventId = eventGenerator.getRandom().event_id
-    }
-
-    // initialize Event
-    responseEv = await responseEv
-    const dataEv = await responseEv.json()
-    let Ev = dataEv.find((e) => {return e.id == eventId} )
-
-    return Ev
-}
-
-async function getEventGenerator(currentNode){
-    let responseG = fetch('public/eventsGenerator.json')
-
-    // Init event Generator
-    responseG = await responseG
-    const dataG = await responseG.json()
-    let eventG = {}
-    dataG.forEach((el)=>{
-        if(el.id == currentNode.event_generator){
-            eventG = new eventGenerator(el)
-        }
-    })
-
-    return eventG
 }

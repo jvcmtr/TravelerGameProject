@@ -1,0 +1,20 @@
+[
+    {
+        "id":0,
+        "name": "",
+        "handling_type": "",
+        "tags": [],
+
+        "attack_bonus": 0,
+        "precision_bonus": 0,
+        "defense_bonus" : 0,
+        "dodge_bonus" : 0,
+
+        "SP_COST": 0,
+        "damage_types" : [],
+
+        "action_effects": [],
+        "user_effects": [],
+        "hit_effects":[]
+    }
+]
